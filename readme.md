@@ -5,7 +5,7 @@
 Los valores son editables.
 
 ## Proyecto disponible en la nube (heroku)
-- Desde el navegador entrar a [https://proyectotds.herokuapp.com/](https://proyectotds.herokuapp.com/)
+- Desde el navegador entrar a [http://proyectotds.herokuapp.com/](http://proyectotds.herokuapp.com/)
 
 
 ## Proyecto en Laravel 5.4
