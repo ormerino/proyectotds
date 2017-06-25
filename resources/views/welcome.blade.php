@@ -81,30 +81,35 @@
                     </span><br>
                     <form action="/simular" method="post">
                         {{csrf_field()}}
+
                         <div class="form-group">
                             <label># de Iteraciones</label>
                             <input type="text" name="num" value="31" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>Tamaño limite de la cola en la Etapa 2:</label>
                             <input type="text" name="cl2" value="10" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label>Tiempo de llegada del cliente a la cola 1 (AT) de forma aleatoria:</label><br>
+                            <label>Tiempo entre llegadas de los clientes a la cola 1 (AT) de forma aleatoria:</label><br>
+
                             <div class="form-group col-sm-4">
-                            <label>Indique un limite inferior de tiempo en minutos:</label>
-                                <input type="number" name="limitei" value="5" class="form-control" min="0">
+                                <label>Indique un limite inferior de tiempo en minutos:</label>
+                                <input type="number" name="limitei" value="10" class="form-control" min="0">
                             </div>
+
                             <div class="form-group col-sm-4">
-                            <label>Indique un limite superior de tiempo en minutos:</label>
+                                <label>Indique un limite superior de tiempo en minutos:</label>
                                 <input type="number" name="limites" value="20" class="form-control" max="100">
                             </div>
+
                         </div>
 
                         <div class="form-group">                        
                             <label>Llegada del primer cliente a la cola (AT0):</label>
-                            <input type="text" name="atinicial" value="10" class="form-control">
+                            <input type="text" name="atinicial" value="5" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -113,36 +118,54 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Tiempo de Servicio en el servidor 2 (DT2):</label>
-                            <input type="text" name="dt2" value="30" class="form-control">
+                            <label>Tiempo de Servicio en el servidor 2 (DT2): Tiempo en que el doctor se tarda en atender un paciente.</label><br>
+
+                            <div class="form-group col-sm-4">
+                                <label>Indique un limite inferior de tiempo en minutos:</label>
+                                <input type="number" name="limitei2" value="20" class="form-control" min="0">
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                                <label>Indique un limite superior de tiempo en minutos:</label>
+                                <input type="number" name="limites2" value="45" class="form-control" max="100">
+                            </div>
+                            
                         </div>
+
                         <div class="form-group">
                             <label>Intervalo en que se arruina el server 1 (BR1):</label>
                             <input type="text" name="br1" value="120" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>Intervalo en que se arruina el server 2 (BR2):</label>
                             <input type="text" name="br2" value="120" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>Tiempo operacional del server 1 (TOP1):</label>
                             <input type="text" name="top1" value="130" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>Tiempo operacional del server 2 (TOP2):</label>
                             <input type="text" name="top2" value="150" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>Tiempo de reparación del server 1 (OP1):</label>
                             <input type="text" name="op1" value="15" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label>Tiempo de reparación del server 2 (OP2):</label>
                             <input type="text" name="op2" value="10" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <input type="submit" value="Simular" class="btn btn-primary">
                         </div>
+
                     </form>
                     <div>
                     <h2>Universidad de El Salvador</h2>

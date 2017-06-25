@@ -1,4 +1,9 @@
 
+## Proyecto de Simulacion de Dos Etapas - Clínica Dental
+- La pantalla principal contiene las entradas para las variables de la simulacion.
+
+Los valores son editables, o puede dejar los valores por defecto para obtener la tabla resultante del ejemplo del libro:
+
 ## Proyecto en Laravel 5.4
 El proposito de haberlo creado en este framework solo es de caracter formativo y académico.
 
@@ -13,14 +18,8 @@ La ruta para instalaciones por defecto de Xampp es: C:\xampp\php\php.exe
 php artisan server 
 Desde el navegador entrar a [http://localhost:8000/](http://localhost:8000/)
 
-- La pantalla principal contiene las entradas para las variables de la simulacion, por defecto se han establecido
-los valores para que el resultado sea la tabla del ejemplo del libro: 
-Computer Simulation Techniques: The definitive introduction! 
-
-Ej: 1.3.3 A two-stage manufacturing system
-
-Los valores son editables, o puede dejar los valores por defecto para obtener la tabla resultante del ejemplo del libro:
-
 ## License
-Proyecto de uso académico puede ser copiado o distribuido por cualquier persona siempre y cuando hagan mención del autor original.
+Proyecto de uso académico puede ser copiado o distribuido por cualquier persona siempre y cuando hagan mención a los autores originales.
 Oscar René Merino Aquino, UES
+Rodrigo Daniel Segovia Romero, UES
+Isaac Stanley Guillen Leon, UES

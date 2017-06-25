@@ -59,7 +59,7 @@
 				<thead>
 					<tr class="info">
 						<td colspan="8">Etapa 1</td>
-						<td colspan="6">Etapa 2</td>
+						<td colspan="5">Etapa 2</td>
 					</tr>
 					<tr>
 						<td>Paso</td>
@@ -75,7 +75,6 @@
 						<td>BR2</td>
 						<td>OP2</td>
 						<td>Servidor</td>
-						<td>AT rand</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -94,7 +93,6 @@
 						<td>{{$res[9]}}</td>
 						<td>{{$res[10]}}</td>
 						<td>{{$res[11]}}</td>
-						<td>{{$res[12]}}</td>
 					</tr>	
 				@endforeach
 				</tbody>

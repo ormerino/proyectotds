@@ -16,7 +16,8 @@ class SimularController extends Controller
     public function calcular($request){
     	for ($i=0; $i < $request['num']; $i++) { //Bucle que controla los pasos a evaluar en la simulacion
 
-    		if ($i==0) { //Si i=0 se establecen las condiciones iniciales de la simulación
+            //Si i=0 se establecen las condiciones iniciales de la simulación
+    		if ($i==0) { 
     			$mc = 0; 						//valor de Master Clock
     			$cl1=0;							//Clientes en la cola 1
     			$at = $request['atinicial'];	//Tiempo de la primera llegada
@@ -30,14 +31,20 @@ class SimularController extends Controller
     			$op2 = '';
     			$server2 = 'Vacio';
     			$cl1pendiente=0;
+
                 $li = $request['limitei'];
                 $ls = $request['limites'];
-    		}
+                //Calculando el tiempo aleatorio de la siguiente llegada
+                $random = rand($li,$ls);
 
-            //Calculando el tiempo aleatorio de la siguiente llegada
-            $random = rand($li,$ls);
+                $li2 = $request['limitei2'];
+                $ls2 = $request['limites2'];
+                //Calculando el tiempo aleatorio de servicio en el servidor 2
+                $random2 = rand($li2,$ls2);
+    		} //Fin de los valores iniciales
 
-    		$resultado[] = array($mc,$at,$cl1,$dt1,$br1,$op1,$server1,$cl2,$dt2,$br2,$op2,$server2,$random); 		
+            //Arreglo a retornar
+    		$resultado[] = array($mc,$at,$cl1,$dt1,$br1,$op1,$server1,$cl2,$dt2,$br2,$op2,$server2,$random,$random2); 		
 
     		//Si las siguientes variables no estan vacias se agregaran al array $menor
     		$menor = array($at);
@@ -59,14 +66,14 @@ class SimularController extends Controller
     		if (!($op2 == '')) {
     			$menor[] = $op2;
     		}
+            //Fin de las comprobaciones de variables vacías
 
-    		//encontrando el menor del array
+    		//Encontrando el menor del array
     		$mc = min($menor);
 
-    		switch ($mc) {
-    			
+    		switch ($mc) { //Evaluando el menor según el caso
 
-    			case ($mc==$br2):
+    			case ($mc==$br2): //Si masterclock es igual al punto de quiebre 2
     					$op2=$mc+$request['op2'];
     					$br2='';
     					if ($server2=='Ocupado')
@@ -76,7 +83,7 @@ class SimularController extends Controller
     						$server2 = 'En reparacion';
     				break;
 
-    			case ($mc==$op2):
+    			case ($mc==$op2): //Si mc es igual al tiempo de operacion del server 2
     					$br2=$mc+$request['top2'];
     					$op2='';
     					if ($cl2>0)
@@ -85,26 +92,31 @@ class SimularController extends Controller
     						$server2='Vacio';
     				break;
 
-    			case ($mc==$at):
+    			case ($mc==$at): //si mc es igual al tiempo de llegada de un nuevo cliente
+                        $random = rand($li,$ls);
     					$cl1++;
 
-
-	    					if ($server1=='En reparacion'){
-	    						$dt1=$op1+$request['dt1'];
-	    					}
-	    					elseif($server1=='Vacio'){
-	    						$dt1=$at+$request['dt1'];
-	    						if ($cl1>0)
-	    							$server1 = 'Ocupado';
-	    					}
+	    				if ($server1=='En reparacion'){
+                            if ($cl1==1) {
+                                $dt1=$op1+$request['dt1'];
+                            }
+	    				}
+	    				elseif($server1=='Vacio'){
+	    					$dt1=$at+$request['dt1'];
+	    					if ($cl1>0)
+	    						$server1 = 'Ocupado';
+	    				}
 
     					$at=$at+$random;				
     				break;
 
-    			case ($mc==$dt2):
+    			case ($mc==$dt2): //Si mc es igual al tiempo de salida en la etapa 2
+                        $random2 = rand($li2,$ls2);
     					$cl2--;
-    					if ($cl2>0) 
-    						$dt2 =$mc+$request['dt2'];
+    					if ($cl2>0){
+                            $dt2 = $mc+$random2;
+    						//$dt2 =$mc+$request['dt2'];
+                        }
 
     					if ($cl2==0){
     						$server2 = 'Vacio';
@@ -113,7 +125,8 @@ class SimularController extends Controller
 
     					if ($cl1pendiente>0) {
     						$cl2++;
-    						$dt2=$mc+$request['dt2'];
+                            $dt2=$mc+$random2;
+    						//$dt2=$mc+$request['dt2'];
     						$cl1--;    						
     						if ($cl1>0){
     							$dt1=$mc+$request['dt1'];
@@ -125,8 +138,10 @@ class SimularController extends Controller
     					}
     				break;
 
-    			case ($mc==$dt1):
+    			case ($mc==$dt1): //Si mc es igual al tiempo de salida en la etapa 1
+                        $random2 = rand($li2,$ls2);
     					$cl2counter= $cl2+1;
+
     					if ($cl2counter<=$request['cl2']) {    				
 	    					$cl1--;
 	    					if($cl1>0){ //Si la cola aun tiene clientes asigna el siguiente tiempo de servicio para el nuevo cliente
@@ -143,7 +158,11 @@ class SimularController extends Controller
 
 	    					$cl2++;
 	    					if(!($server2=='En reparacion')){
-		    					$dt2=$mc+$request['dt2'];
+		    					//$dt2=$mc+$request['dt2'];
+                                if ($cl2<=1) {
+                                    $dt2=$mc+$random2;
+                                }
+                                
 
 		    					if ($cl2>0)
 		    						$server2 = 'Ocupado';
@@ -156,7 +175,7 @@ class SimularController extends Controller
 	    				}
     				break;
 
-    			case ($mc==$br1):
+    			case ($mc==$br1): //Si mc es igual al punto de quiebre del server 1
     					$op1=$mc+$request['op1'];
     					$br1='';
     					if(!($op1==''))
@@ -165,7 +184,7 @@ class SimularController extends Controller
     						$dt1=$dt1+$request['op1'];
     				break;
 
-    			case ($mc==$op1):
+    			case ($mc==$op1): //Si mc es igual al tiempo de operacion del server 1
     					$br1=$mc+$request['top1'];
     					$op1='';
     					if ($cl1>0)
