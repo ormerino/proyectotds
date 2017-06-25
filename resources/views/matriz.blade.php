@@ -100,8 +100,13 @@
 			<a href="/">
 				<h2>Regresar</h2>
 			</a>
+
 		</div>
+
 	</div>
+	<div style="text-align:center; color: #d6cbaf;">
+                    <h2>Universidad de El Salvador</h2>
+                    </div>
 	<br><br><br>
 </body>
 </html>

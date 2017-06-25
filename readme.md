@@ -2,7 +2,11 @@
 ## Proyecto de Simulacion de Dos Etapas - Clínica Dental
 - La pantalla principal contiene las entradas para las variables de la simulacion.
 
-Los valores son editables, o puede dejar los valores por defecto para obtener la tabla resultante del ejemplo del libro:
+Los valores son editables.
+
+## Proyecto disponible en la nube (heroku)
+- Desde el navegador entrar a [https://proyectotds.herokuapp.com/](https://proyectotds.herokuapp.com/)
+
 
 ## Proyecto en Laravel 5.4
 El proposito de haberlo creado en este framework solo es de caracter formativo y académico.

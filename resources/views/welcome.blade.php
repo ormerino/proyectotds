@@ -129,7 +129,7 @@
                                 <label>Indique un limite superior de tiempo en minutos:</label>
                                 <input type="number" name="limites2" value="45" class="form-control" max="100">
                             </div>
-                            
+
                         </div>
 
                         <div class="form-group">
@@ -167,7 +167,7 @@
                         </div>
 
                     </form>
-                    <div>
+                    <div style="text-align:center;">
                     <h2>Universidad de El Salvador</h2>
                     </div>
                 </div>
